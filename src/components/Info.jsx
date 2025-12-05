@@ -88,7 +88,7 @@ const Info = () => {
     <>
       <section id='about' className="pt-14 sm:pt-10 lg:pt-20 relative overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/30 to-white"></div>
+        <div className="absolute inset-0 bg-gradient-to-b "></div>
         
         <div className="container mx-auto px-5 sm:px-8 lg:px-16 relative z-10">
           <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-16">
@@ -184,8 +184,8 @@ const Info = () => {
                 <button
                   onClick={downloadResume}
                   className={`
-                    absolute -bottom-3 -right-3 z-20
-                    w-14 h-14 rounded-full 
+                    absolute bottom-2 right-5 z-20
+                    w-12 h-12 rounded-full 
                     bg-[#006eff] text-white 
                     flex items-center justify-center
                     shadow-xl hover:shadow-2xl

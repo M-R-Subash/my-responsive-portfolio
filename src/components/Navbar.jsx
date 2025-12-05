@@ -181,7 +181,7 @@ const Navbar = () => {
         href="https://api.whatsapp.com/send?phone=7708540879&text=Hi%20,%20Can%20i%20have%20a%20chat"
         target="_blank"
         rel="noopener noreferrer"
-        className="lg:hidden fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
+        className="lg:hidden fixed bottom-6 right-8 z-40 w-11 h-11 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-xl  hover:shadow-3xl transition-all duration-300 hover:scale-110 hover:-translate-y-1 animate-bounce-slow"
       >
         <FaWhatsapp className="text-2xl" />
       </a>
