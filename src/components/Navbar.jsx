@@ -57,8 +57,8 @@ const Navbar = () => {
       <header 
         className={`
           fixed top-0 left-0 right-0 z-50 bg-white/30 backdrop-blur-md
-          transition-all duration-300 border-b border-gray-200
-          ${scrolled ? "py-3 shadow-md" : "py-4"}
+          transition-all duration-300 border-b border-gray-300
+          ${scrolled ? "py-3 shadow-lg" : "py-4 shadow-sm"}
         `}
       >
         <div className="container mx-auto px-5 sm:px-8 lg:px-16">
@@ -106,7 +106,7 @@ const Navbar = () => {
             {/* Desktop Action Buttons */}
             <div className="hidden lg:flex items-center space-x-3">
               <a
-                href="https://api.whatsapp.com/send?phone=7708540879&text=Hi%20,%20Can%20i%20have%20a%20chat"
+                href="https://api.whatsapp.com/send?phone=7708540879&text=Hi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 bg-[#25D366] text-white px-5 py-2.5 rounded-lg font-medium shadow-md hover:shadow-lg hover:bg-[#128C7E] transition-all duration-300"
@@ -163,7 +163,7 @@ const Navbar = () => {
               
               {/* Mobile WhatsApp Button */}
               <a
-                href="https://api.whatsapp.com/send?phone=7708540879&text=Hi%20,%20Can%20i%20have%20a%20chat"
+                href="https://api.whatsapp.com/send?phone=7708540879&text=Hi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center space-x-2 bg-[#25D366] text-white px-6 py-3 rounded-lg font-medium mt-2 shadow-md"
@@ -178,7 +178,7 @@ const Navbar = () => {
 
       {/* Floating WhatsApp Button for Mobile */}
       <a
-        href="https://api.whatsapp.com/send?phone=7708540879&text=Hi%20,%20Can%20i%20have%20a%20chat"
+        href="https://api.whatsapp.com/send?phone=7708540879&text=Hi"
         target="_blank"
         rel="noopener noreferrer"
         className="lg:hidden fixed bottom-6 right-8 z-40 w-11 h-11 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-xl  hover:shadow-3xl transition-all duration-300 hover:scale-110 hover:-translate-y-1 animate-bounce-slow"
