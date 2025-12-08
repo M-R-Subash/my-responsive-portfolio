@@ -4,16 +4,19 @@ import Education from "./components/Education";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
+import CustomCursor from './components/CustomCursor';
+
 
 const App = () => {
   return (
     <>
-      <Navbar />
-      <Info />
-      <Education />
-      <Skills />
-      <Projects />
-      <Footer/>
+        <CustomCursor/>
+        <Navbar />
+        <Info />
+        <Education />
+        <Skills />
+        <Projects />
+        <Footer/>
     </>
   );
 };

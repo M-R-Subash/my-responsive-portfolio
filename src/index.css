@@ -6,3 +6,12 @@ body{
   font-family: 'Poppins',sans-serif;
   background-color: #F7F7F7;
 }
+
+
+.cursor-dot {
+  transition: left 0.08s linear, top 0.08s linear;
+}
+
+.cursor-ring {
+  transition: left 0.15s linear, top 0.15s linear;
+}
