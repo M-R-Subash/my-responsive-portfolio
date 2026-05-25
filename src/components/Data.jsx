@@ -3,9 +3,9 @@ import NikeThumbnail from '../assets/NikeThumbnail.png';
 import Service from '../assets/ServiceLandingPage.png';
 import Whetherly from '../assets/Whetherly.png';
 import Whiteboard from '../assets/Whiteboard.png';
-import { FaGraduationCap, FaBookOpen, FaSchool } from "react-icons/fa";
+import { FaGraduationCap, FaBookOpen, FaSchool, FaBriefcase, FaWordpress } from "react-icons/fa";
 import { FaHtml5, FaCss3Alt, FaReact, FaGithub } from "react-icons/fa";
-import { SiTailwindcss, SiJavascript, SiFirebase, SiBootstrap } from "react-icons/si";
+import { SiTailwindcss, SiJavascript, SiFirebase, SiBootstrap, SiTypescript, SiElementor, SiWoocommerce, SiShopify } from "react-icons/si";
 import { TbBulb, TbUsers, TbBrain, TbEyeCheck, TbHeartHandshake } from "react-icons/tb";
 
 export const PROJECTS = [
@@ -55,6 +55,21 @@ export const PROJECTS = [
 
 export const educationData = [
     {
+      id: 0,
+      icon: <FaBriefcase className="text-xl sm:text-3xl" />,
+      institution: "YS Innovation Startup, Coimbatore",
+      degree: "Full Stack Intern",
+      year: "2026 May - Present",
+      grade: "Active",
+      projects: [
+        "Developing responsive, modern full-stack web applications",
+        "Building e-commerce and CMS portals with WordPress, WooCommerce, & Shopify",
+        "Structuring type-safe scalable logic with TypeScript & React",
+        "Designing high-converting landing pages using Elementor builder"
+      ],
+      color: "from-blue-600 to-blue-800"
+    },
+    {
       id: 1,
       icon: <FaGraduationCap className="text-xl sm:text-3xl" />,
       institution: "Karpagam Academy of Higher Education",
@@ -65,7 +80,7 @@ export const educationData = [
         "Electronic Invoice System - Final Year Project",
         "AI-Based Credit Card Fraud Detection (Research Journal)"
       ],
-      color: "from-blue-600 to-blue-700"
+      color: "from-blue-500 to-blue-600"
     },
     {
       id: 2,
@@ -78,7 +93,7 @@ export const educationData = [
         "Home Services Booking Website - Final Year Project",
         "Thyroid Detection Using Machine Learning - Group Project"
       ],
-      color: "from-blue-500 to-blue-600"
+      color: "from-blue-400 to-blue-500"
     },
     {
       id: 3,
@@ -89,7 +104,7 @@ export const educationData = [
       grade: "65%",
       subjects: ["Computer Science", "Mathematics", "Physics", "Chemistry"],
       description: "Computer Science with Mathematics Stream",
-      color: "from-blue-400 to-blue-500"
+      color: "from-blue-300 to-blue-400"
     },
     {
       id: 4,
@@ -99,7 +114,7 @@ export const educationData = [
       year: "2017 - 2018",
       grade: "76%",
       description: "State Board with focus on Mathematics and Science",
-      color: "from-blue-300 to-blue-400"
+      color: "from-blue-200 to-blue-300"
     }
   ];
 
@@ -123,15 +138,23 @@ export const technicalSkills = [
     { 
       name: "JavaScript", 
       icon: <SiJavascript className="text-5xl text-yellow-500" />, 
-      level: 60,
+      level: 80,
       color: "from-yellow-500 to-yellow-600",
       bg: "bg-yellow-100",
       text: "text-yellow-600"
     },
     { 
+      name: "TypeScript", 
+      icon: <SiTypescript className="text-5xl text-blue-600" />, 
+      level: 70,
+      color: "from-blue-600 to-blue-700",
+      bg: "bg-blue-50",
+      text: "text-blue-600"
+    },
+    { 
       name: "React", 
       icon: <FaReact className="text-5xl text-cyan-500" />, 
-      level: 35,
+      level: 65,
       color: "from-cyan-500 to-cyan-600",
       bg: "bg-cyan-100",
       text: "text-cyan-600"
@@ -143,6 +166,38 @@ export const technicalSkills = [
       color: "from-blue-400 to-blue-500",
       bg: "bg-blue-50",
       text: "text-blue-500"
+    },
+    { 
+      name: "WordPress", 
+      icon: <FaWordpress className="text-5xl text-blue-700" />, 
+      level: 80,
+      color: "from-blue-700 to-blue-800",
+      bg: "bg-blue-100",
+      text: "text-blue-700"
+    },
+    { 
+      name: "Elementor", 
+      icon: <SiElementor className="text-5xl text-red-500" />, 
+      level: 85,
+      color: "from-red-500 to-red-600",
+      bg: "bg-red-50",
+      text: "text-red-600"
+    },
+    { 
+      name: "WooCommerce", 
+      icon: <SiWoocommerce className="text-5xl text-purple-600" />, 
+      level: 75,
+      color: "from-purple-600 to-purple-700",
+      bg: "bg-purple-50",
+      text: "text-purple-600"
+    },
+    { 
+      name: "Shopify", 
+      icon: <SiShopify className="text-5xl text-green-600" />, 
+      level: 70,
+      color: "from-green-600 to-green-700",
+      bg: "bg-green-50",
+      text: "text-green-600"
     },
     { 
       name: "Bootstrap", 
@@ -160,14 +215,14 @@ export const technicalSkills = [
       bg: "bg-gray-100",
       text: "text-gray-800"
     },
-    { 
-      name: "Firebase", 
-      icon: <SiFirebase className="text-5xl text-yellow-500" />, 
-      level: 70,
-      color: "from-yellow-400 to-yellow-500",
-      bg: "bg-yellow-50",
-      text: "text-yellow-600"
-    }
+    // { 
+    //   name: "Firebase", 
+    //   icon: <SiFirebase className="text-5xl text-yellow-500" />, 
+    //   level: 70,
+    //   color: "from-yellow-400 to-yellow-500",
+    //   bg: "bg-yellow-50",
+    //   text: "text-yellow-600"
+    // }
   ];
 
 export const softSkills = [

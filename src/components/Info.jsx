@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import profile from '../assets/profile.jpg';
 import { FaGithub, FaInstagram, FaLinkedin, FaFacebook, FaDownload } from "react-icons/fa";
 import { BsSuitcaseLgFill } from "react-icons/bs";
+import { motion } from 'framer-motion';
 
 const Info = () => {
   const [text, setText] = useState('');
@@ -12,7 +13,7 @@ const Info = () => {
   const [showDownloadMessage, setShowDownloadMessage] = useState(false);
   const [messageType, setMessageType] = useState(''); // 'success' or 'error'
   
-  const titles = ['Web Developer', 'Frontend Developer'];
+  const titles = ['Web Developer', 'Full Stack Intern', 'CMS Developer', 'Frontend Developer'];
 
   useEffect(() => {
     const handleTyping = () => {
@@ -90,23 +91,28 @@ const Info = () => {
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b "></div>
         
-        <div className="container mx-auto px-5 sm:px-8 lg:px-16 relative z-10">
+        <div className="max-w-[1280px] mx-auto px-5 relative z-10">
           <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-16">
             
             {/* Left Content */}
-            <div className="lg:w-1/2 text-center lg:text-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+              className="lg:w-1/2 text-center lg:text-left"
+            >
               <div className="mb-6">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
-                  Hello, I'm <span className="text-[#006eff]">Subash</span>
+                  Hello, I'm <span className="text-blue-500">Subash</span>
                 </h1>
                 
                 <div className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700 mb-2 h-10">
-                  A <span className="text-[#006eff]">{text}</span>
-                  <span className="ml-1 animate-pulse text-[#006eff]">|</span>
+                  A <span className="text-blue-500">{text}</span>
+                  <span className="ml-1 animate-pulse text-blue-500">|</span>
                 </div>
                 
                 <p className="text-gray-600 text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                  I build responsive and user-friendly websites using HTML, CSS, Tailwind CSS, and JavaScript, with beginner-level experience in React. I focus on clean code, smart design, and continuous learning to improve my skills.
+                  I am a Full Stack Intern at YS Innovation Startup in Coimbatore, specializing in building responsive and user-friendly websites using React, TypeScript, WordPress, WooCommerce, Shopify, and modern web frameworks. I focus on clean code, smart design, and continuous learning to deliver high-quality solutions.
                   <br /><br />
                   Outside coding, I enjoy anime, gaming, and reading manga, which inspire my creativity.
                 </p>
@@ -118,7 +124,7 @@ const Info = () => {
                   href='mailto:mrsubash1615@gmail.com' 
                   rel='noopener noreferrer' 
                   target='_blank'
-                  className="inline-flex items-center justify-center gap-2 bg-[#006eff] text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl hover:bg-[#005ce6] transition-all duration-300 transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl hover:bg-blue-600 transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <BsSuitcaseLgFill className="text-lg" />
                   Hire Me
@@ -126,7 +132,7 @@ const Info = () => {
                 
                 <button
                   onClick={downloadResume}
-                  className="inline-flex items-center justify-center gap-2 border-2 border-[#006eff] text-[#006eff] px-6 py-3 rounded-lg font-medium hover:bg-[#006eff] hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-blue-500 text-blue-500 px-6 py-3 rounded-lg font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <FaDownload className="text-lg" />
                   Download Resume
@@ -147,10 +153,15 @@ const Info = () => {
                   </a>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Right - Profile Image */}
-            <div className="lg:w-1/2 flex justify-center relative">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ type: "spring", stiffness: 50, damping: 12, delay: 0.3 }}
+              className="lg:w-1/2 flex justify-center relative"
+            >
               <div 
                 className="relative group"
                 onMouseEnter={() => setIsImageHovered(true)}
@@ -174,7 +185,7 @@ const Info = () => {
                   
                   {/* Gradient Overlay on Hover */}
                   <div className={`
-                    absolute inset-0 bg-gradient-to-tr from-[#006eff]/20 to-transparent
+                    absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-transparent
                     transition-opacity duration-500
                     ${isImageHovered ? 'opacity-100' : 'opacity-0'}
                   `}></div>
@@ -186,7 +197,7 @@ const Info = () => {
                   className={`
                     absolute bottom-2 right-5 z-20
                     w-12 h-12 rounded-full 
-                    bg-[#006eff] text-white 
+                    bg-blue-500 text-white 
                     flex items-center justify-center
                     shadow-xl hover:shadow-2xl
                     transition-all duration-300
@@ -210,7 +221,7 @@ const Info = () => {
                   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-gray-800 rotate-45"></div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -239,7 +250,8 @@ const Info = () => {
         <div className="relative">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" className="w-full">
             <path 
-              fill="#006eff" 
+              fill="currentColor" 
+              className="text-blue-500"
               fillOpacity="0.9"
               d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,90.7C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
             >

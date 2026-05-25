@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-blue-50: #f0f6ff;
+  --color-blue-100: #e0ebff;
+  --color-blue-200: #c2daff;
+  --color-blue-300: #94beff;
+  --color-blue-400: #5c99ff;
+  --color-blue-500: #006eff;
+  --color-blue-600: #005ce6;
+  --color-blue-700: #004cc2;
+  --color-blue-800: #003d9e;
+  --color-blue-900: #003180;
+}
+
 body{
   font-family: 'Poppins',sans-serif;
   background-color: #F7F7F7;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaWhatsapp, FaDownload } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("about");
@@ -54,14 +55,17 @@ const Navbar = () => {
   return (
     <>
       {/* Fixed Navbar */}
-      <header 
+      <motion.header 
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 80, damping: 15 }}
         className={`
           fixed top-0 left-0 right-0 z-50 bg-white/30 backdrop-blur-md
           transition-all duration-300 border-b border-gray-300
           ${scrolled ? "py-3 shadow-lg" : "py-4 shadow-sm"}
         `}
       >
-        <div className="container mx-auto px-5 sm:px-8 lg:px-16">
+        <div className="max-w-[1280px] px-5 m-auto">
           <div className="flex items-center justify-between">
             
             {/* Logo */}
@@ -70,7 +74,7 @@ const Navbar = () => {
               onClick={() => handleScroll("about")}
             >
               <div className="relative">
-                <div className="w-12 h-12 rounded-xl bg-[#006eff] bg-opacity-90 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                <div className="w-12 h-12 rounded-xl bg-blue-500 bg-opacity-90 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                   <span className="text-white font-bold text-xl tracking-tighter">MR</span>
                 </div>
               </div>
@@ -89,13 +93,13 @@ const Navbar = () => {
                   className={`
                     relative px-4 py-2 mx-1 font-medium text-gray-700 
                     transition-all duration-300
-                    hover:text-[#006eff]
-                    ${activeSection === item.id ? "text-[#006eff]" : ""}
+                    hover:text-blue-500
+                    ${activeSection === item.id ? "text-blue-500" : ""}
                   `}
                 >
                   {item.label}
                   <span className={`
-                    absolute bottom-0 left-0 right-0 h-0.5 bg-[#006eff] 
+                    absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 
                     transition-all duration-300 transform
                     ${activeSection === item.id ? "scale-x-100" : "scale-x-0"}
                   `}></span>
@@ -119,7 +123,7 @@ const Navbar = () => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-gray-700 hover:text-[#006eff] transition-colors duration-200"
+              className="lg:hidden p-2 text-gray-700 hover:text-blue-500 transition-colors duration-200"
             >
               {isMobileMenuOpen ? (
                 <HiX className="text-2xl" />
@@ -142,7 +146,7 @@ const Navbar = () => {
             }
           `}
         >
-          <div className="container mx-auto px-5 py-4">
+          <div className="max-w-[1280px] mx-auto px-5 py-4">
             <div className="space-y-2">
               {navItems.map((item) => (
                 <button
@@ -152,7 +156,7 @@ const Navbar = () => {
                     w-full text-left px-4 py-3 rounded-lg font-medium
                     transition-all duration-300
                     ${activeSection === item.id
-                      ? "bg-[#006eff] bg-opacity-10 text-[#006eff]"
+                      ? "bg-blue-500 bg-opacity-10 text-blue-500"
                       : "text-gray-700 hover:bg-gray-100"
                     }
                   `}
@@ -174,7 +178,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Floating WhatsApp Button for Mobile */}
       <a
