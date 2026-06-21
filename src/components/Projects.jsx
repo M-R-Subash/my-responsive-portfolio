@@ -1,6 +1,6 @@
 import { FaLocationArrow } from "react-icons/fa";
 import { PROJECTS } from "./Data";
-import { BlurReveal } from "./BlurReveal";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   const getProjectStatus = (name) => {
@@ -19,6 +19,8 @@ const Projects = () => {
     return `PRJ-00${index + 1}`;
   };
 
+
+
   return (
     <div className="pt-16 sm:pt-24 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-all duration-300 overflow-hidden" id="projects">
       
@@ -26,22 +28,46 @@ const Projects = () => {
         
         {/* Instantly Understandable HUD Header */}
         <div className="text-center mb-16">
-          <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block">// APPLICATION_LOG_04</span>
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white mb-4 uppercase">
-            <BlurReveal text="PROJECTS" />
-          </h1>
+          <motion.span 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block"
+          >
+            // APPLICATION_LOG_04
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white mb-4 uppercase"
+          >
+            PROJECTS
+          </motion.h1>
           <div className="w-16 h-[1px] bg-zinc-200 dark:bg-zinc-800 mx-auto mb-6 transition-all duration-300" />
-          <p className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed">
-            <BlurReveal text="A complete architectural archive of my developed applications, cloned landing pages, and responsive interface setups." isParagraph={true} />
-          </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed"
+          >
+            A complete architectural archive of my developed applications, cloned landing pages, and responsive interface setups.
+          </motion.p>
         </div>
 
         {/* Dashboard Grid Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {PROJECTS.map((project, index) => (
-            <div 
+            <motion.div 
               key={project.name}
-              className="relative border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/10 p-6 flex flex-col justify-between rounded-none shadow-sm transition-all duration-300 hover:border-zinc-450 dark:hover:border-zinc-700 min-h-[490px]"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
+              className="relative border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/10 p-6 flex flex-col justify-between rounded-none shadow-sm transition-colors duration-300 hover:border-zinc-450 dark:hover:border-zinc-700 min-h-[490px]"
             >
               {/* Corner Plus Sign HUD Decorations */}
               <span className="absolute -top-[1px] -left-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
@@ -108,7 +134,7 @@ const Projects = () => {
                 )}
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 

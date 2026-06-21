@@ -1,6 +1,5 @@
 import { educationData } from './Data';
 import { FaCalendarAlt, FaAward, FaGraduationCap, FaBriefcase } from "react-icons/fa";
-import { BlurReveal } from "./BlurReveal";
 import { motion } from "framer-motion";
 
 const Education = () => {
@@ -18,20 +17,47 @@ const Education = () => {
         
         {/* Title Header */}
         <div className="text-center mb-20">
-          <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block">// TIMELINE_DATABASE_02</span>
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white mb-4 uppercase">
-            <BlurReveal text="EDUCATION & JOURNEY" />
-          </h1>
+          <motion.span 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block"
+          >
+            // TIMELINE_DATABASE_02
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white mb-4 uppercase"
+          >
+            EDUCATION & JOURNEY
+          </motion.h1>
           <div className="w-16 h-[1px] bg-zinc-200 dark:bg-zinc-800 mx-auto mb-6 transition-all duration-300" />
-          <p className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed">
-            <BlurReveal text="A complete chronological directory of my academic credentials, professional internships, and specialized training." isParagraph={true} />
-          </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed"
+          >
+            A complete chronological directory of my academic credentials, professional internships, and specialized training.
+          </motion.p>
         </div>
 
         {/* Vertical Timeline Track */}
         <div className="relative border-l border-zinc-200 dark:border-zinc-900 ml-4 sm:ml-8 pl-8 sm:pl-12 space-y-12 transition-all duration-300">
           {educationData.map((edu, index) => (
-            <div key={edu.id} className="relative group">
+            <motion.div 
+              key={edu.id} 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+              className="relative group"
+            >
               {/* Timeline Station Icon Indicator */}
               <span className="absolute -left-[45px] sm:-left-[61px] top-1.5 w-6 h-6 rounded-none bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 flex items-center justify-center text-zinc-500 dark:text-zinc-400 shadow-sm z-10 transition-all duration-300 group-hover:border-zinc-900 dark:group-hover:border-white">
                 {getInstitutionIcon(edu)}
@@ -112,7 +138,7 @@ const Education = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -125,9 +151,13 @@ const Education = () => {
               { label: "Technical Roles", value: "1", desc: "Full Stack Intern" },
               { label: "Research Papers", value: "1", desc: "AI Fraud Detection" }
             ].map((stat, idx) => (
-              <div 
-                key={idx}
-                className="bg-white/70 dark:bg-zinc-900/15 border border-zinc-200 dark:border-zinc-900/80 p-5 rounded-none relative overflow-hidden group transition-all duration-300"
+              <motion.div 
+                key={stat.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                className="bg-white/70 dark:bg-zinc-900/15 border border-zinc-200 dark:border-zinc-900/80 p-5 rounded-none relative overflow-hidden group transition-colors duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-zinc-200/20 dark:from-zinc-850/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
@@ -144,7 +174,7 @@ const Education = () => {
                 <div className="text-[9px] font-mono text-zinc-400 transition-colors">
                   {stat.desc}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

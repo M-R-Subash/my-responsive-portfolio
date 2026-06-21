@@ -184,7 +184,7 @@ const Info = () => {
                 <span className="absolute -bottom-[1px] -left-[1px] text-zinc-400 dark:text-zinc-600 font-bold select-none text-[12px] pointer-events-none transition-all duration-300">+</span>
                 <span className="absolute -bottom-[1px] -right-[1px] text-zinc-400 dark:text-zinc-600 font-bold select-none text-[12px] pointer-events-none transition-all duration-300">+</span>
 
-                <div className="relative overflow-hidden w-52 h-52 sm:w-72 sm:h-72 lg:w-80 lg:h-80 border border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-900 transition-all duration-300">
+                <div className="relative overflow-hidden w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 border border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-900 transition-all duration-300">
                   <img 
                     src={profile} 
                     alt="Subash M R" 
