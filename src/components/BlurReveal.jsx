@@ -38,7 +38,7 @@ export const BlurReveal = ({ text, className = "", isParagraph = false }) => {
     };
   }, []);
 
-  const characters = text.split("");
+  const words = text.split(" ");
 
   const containerVariants = {
     hidden: {},
@@ -75,15 +75,21 @@ export const BlurReveal = ({ text, className = "", isParagraph = false }) => {
       animate="visible"
       className={`${className} inline-block`}
     >
-      {characters.map((char, index) => (
-        <motion.span
-          key={index}
-          variants={charVariants}
-          className="inline-block"
-          style={{ whiteSpace: char === " " ? "pre" : "normal" }}
-        >
-          {char}
-        </motion.span>
+      {words.map((word, wordIdx) => (
+        <span key={wordIdx} className="inline-block">
+          <span className="inline-block whitespace-nowrap">
+            {word.split("").map((char, charIdx) => (
+              <motion.span
+                key={charIdx}
+                variants={charVariants}
+                className="inline-block"
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
+          {wordIdx < words.length - 1 && " "}
+        </span>
       ))}
     </motion.span>
   );

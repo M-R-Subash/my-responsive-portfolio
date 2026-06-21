@@ -21,7 +21,23 @@ const HUDSectionLoader = () => (
 
 const App = () => {
   const [theme, setTheme] = useState(() => localStorage.getItem("portfolio-theme") || "light");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    const lastLoaded = localStorage.getItem("portfolio-preloader-loaded-at");
+    if (lastLoaded) {
+      const now = Date.now();
+      const timeDiff = now - parseInt(lastLoaded, 10);
+      // Skip preloader if loaded within last 24 hours
+      if (timeDiff < 24 * 60 * 60 * 1000) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  const handlePreloaderComplete = () => {
+    localStorage.setItem("portfolio-preloader-loaded-at", Date.now().toString());
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     localStorage.setItem("portfolio-theme", theme);
@@ -60,7 +76,7 @@ const App = () => {
     <>
       <AnimatePresence mode="wait">
         {isLoading && (
-          <Preloader onComplete={() => setIsLoading(false)} />
+          <Preloader onComplete={handlePreloaderComplete} />
         )}
       </AnimatePresence>
 
