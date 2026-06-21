@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { FaWhatsapp, FaDownload } from "react-icons/fa";
+import { FaEnvelope, FaDownload } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
 
-const Navbar = () => {
+const Navbar = ({ theme, setTheme }) => {
   const [activeSection, setActiveSection] = useState("about");
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,27 +60,25 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 80, damping: 15 }}
         className={`
-          fixed top-0 left-0 right-0 z-50 bg-white/30 backdrop-blur-md
-          transition-all duration-300 border-b border-gray-300
-          ${scrolled ? "py-3 shadow-lg" : "py-4 shadow-sm"}
+          fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-zinc-950/80 backdrop-blur-md
+          transition-all duration-300 border-b border-zinc-200 dark:border-zinc-800/80
+          ${scrolled ? "py-2.5 shadow-md dark:shadow-xl bg-white/90 dark:bg-zinc-950/90" : "py-4"}
         `}
       >
         <div className="max-w-[1280px] px-5 m-auto">
           <div className="flex items-center justify-between">
             
-            {/* Logo */}
+            {/* Logo - HUD Style */}
             <div 
               className="flex items-center cursor-pointer group"
               onClick={() => handleScroll("about")}
             >
-              <div className="relative">
-                <div className="w-12 h-12 rounded-xl bg-blue-500 bg-opacity-90 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                  <span className="text-white font-bold text-xl tracking-tighter">MR</span>
-                </div>
-              </div>
-              <div className="ml-3">
-                <h1 className="font-bold text-lg text-gray-800">SUBASH M R</h1>
-                <p className="text-gray-600 text-xs">Frontend Developer</p>
+              <div className="relative border border-zinc-200 dark:border-zinc-800 px-3 py-2 bg-zinc-100/40 dark:bg-zinc-900/40 rounded-none flex items-center justify-center transition-all duration-300">
+                <span className="absolute -top-[1px] -left-[1px] text-zinc-400 dark:text-zinc-500 font-bold select-none text-[8px] pointer-events-none">+</span>
+                <span className="absolute -top-[1px] -right-[1px] text-zinc-400 dark:text-zinc-500 font-bold select-none text-[8px] pointer-events-none">+</span>
+                <span className="absolute -bottom-[1px] -left-[1px] text-zinc-400 dark:text-zinc-500 font-bold select-none text-[8px] pointer-events-none">+</span>
+                <span className="absolute -bottom-[1px] -right-[1px] text-zinc-400 dark:text-zinc-500 font-bold select-none text-[8px] pointer-events-none">+</span>
+                <span className="text-zinc-900 dark:text-white font-mono text-xs tracking-[0.2em]">SUBASH //</span>
               </div>
             </div>
 
@@ -91,16 +89,13 @@ const Navbar = () => {
                   key={item.id}
                   onClick={() => handleScroll(item.id)}
                   className={`
-                    relative px-4 py-2 mx-1 font-medium text-gray-700 
-                    transition-all duration-300
-                    hover:text-blue-500
-                    ${activeSection === item.id ? "text-blue-500" : ""}
+                    relative px-4 py-2 mx-1 font-mono text-xs tracking-widest transition-all duration-300 rounded-none
+                    ${activeSection === item.id ? "text-zinc-900 dark:text-white font-bold" : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"}
                   `}
                 >
                   {item.label}
                   <span className={`
-                    absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 
-                    transition-all duration-300 transform
+                    absolute bottom-0 left-4 right-4 h-[1px] bg-zinc-900 dark:bg-white transition-all duration-300 transform
                     ${activeSection === item.id ? "scale-x-100" : "scale-x-0"}
                   `}></span>
                 </button>
@@ -109,36 +104,51 @@ const Navbar = () => {
 
             {/* Desktop Action Buttons */}
             <div className="hidden lg:flex items-center space-x-3">
+              <button
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                className="border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-transparent text-zinc-700 dark:text-zinc-300 px-4 py-2 font-mono text-xs tracking-wider transition-all duration-300 rounded-none"
+              >
+                MODE: {theme.toUpperCase()}
+              </button>
               <a
-                href="https://api.whatsapp.com/send?phone=7708540879&text=Hi"
+                href="mailto:mrsubash1615@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 bg-[#25D366] text-white px-5 py-2.5 rounded-lg font-medium shadow-md hover:shadow-lg hover:bg-[#128C7E] transition-all duration-300"
+                className="flex items-center space-x-2 border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-transparent hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-950 text-zinc-700 dark:text-zinc-200 px-5 py-2 font-mono text-xs tracking-wider transition-all duration-300 rounded-none"
               >
-                <FaWhatsapp className="text-lg" />
-                <span>Connect</span>
+                <FaEnvelope className="text-sm text-zinc-500 dark:text-zinc-400" />
+                <span>CONNECT</span>
               </a>
             </div>
 
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-gray-700 hover:text-blue-500 transition-colors duration-200"
-            >
-              {isMobileMenuOpen ? (
-                <HiX className="text-2xl" />
-              ) : (
-                <HiMenu className="text-2xl" />
-              )}
-            </button>
+            {/* Mobile Controls */}
+            <div className="lg:hidden flex items-center space-x-2">
+              <button
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                className="border border-zinc-200 dark:border-zinc-700 bg-transparent text-zinc-700 dark:text-zinc-350 px-3 py-1.5 font-mono text-[9px] tracking-wider rounded-none transition-all duration-300"
+              >
+                {theme.toUpperCase()}
+              </button>
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-white transition-colors duration-200"
+              >
+                {isMobileMenuOpen ? (
+                  <HiX className="text-2xl" />
+                ) : (
+                  <HiMenu className="text-2xl" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Navigation Menu */}
         <div
           className={`
-            lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm
-            border-t border-gray-200 shadow-lg
+            lg:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md
+            border-t border-zinc-200 dark:border-zinc-900 shadow-2xl
             transform transition-all duration-300 ease-out
             ${isMobileMenuOpen
               ? "translate-y-0 opacity-100"
@@ -147,61 +157,30 @@ const Navbar = () => {
           `}
         >
           <div className="max-w-[1280px] mx-auto px-5 py-4">
-            <div className="space-y-2">
+            <div className="space-y-1">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleScroll(item.id)}
                   className={`
-                    w-full text-left px-4 py-3 rounded-lg font-medium
+                    w-full text-left px-4 py-3 font-mono text-xs tracking-widest rounded-none
                     transition-all duration-300
                     ${activeSection === item.id
-                      ? "bg-blue-500 bg-opacity-10 text-blue-500"
-                      : "text-gray-700 hover:bg-gray-100"
+                      ? "bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white font-bold border-l border-zinc-900 dark:border-white"
+                      : "text-zinc-650 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/50"
                     }
                   `}
                 >
                   {item.label}
                 </button>
               ))}
-              
-              {/* Mobile WhatsApp Button */}
-              <a
-                href="https://api.whatsapp.com/send?phone=7708540879&text=Hi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center space-x-2 bg-[#25D366] text-white px-6 py-3 rounded-lg font-medium mt-2 shadow-md"
-              >
-                <FaWhatsapp className="text-lg" />
-                <span>WhatsApp Connect</span>
-              </a>
             </div>
           </div>
         </div>
       </motion.header>
 
-      {/* Floating WhatsApp Button for Mobile */}
-      <a
-        href="https://api.whatsapp.com/send?phone=7708540879&text=Hi"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="lg:hidden fixed bottom-6 right-8 z-40 w-11 h-11 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-xl  hover:shadow-3xl transition-all duration-300 hover:scale-110 hover:-translate-y-1 animate-bounce-slow"
-      >
-        <FaWhatsapp className="text-2xl" />
-      </a>
-
       {/* Spacer for fixed navbar */}
       <div className="h-20 lg:h-24"></div>
-
-      <style jsx>{`
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-5px); }
-        }
-        .animate-bounce {
-          animation: bounce 0.5s ease-in-out;
-        }
-      `}</style>
     </>
   );
 };

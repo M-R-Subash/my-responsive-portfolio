@@ -34,37 +34,19 @@ const Footer = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.15, y: -4 }}
+            whileHover={{ y: -3 }}
             onClick={scrollToTop}
-            className="fixed bottom-20 right-8 z-50 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-3.5 rounded-full shadow-2xl transition-all duration-300"
+            className="fixed bottom-24 right-8 z-50 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white p-3 rounded-none shadow-2xl transition-all duration-300"
             aria-label="Scroll to top"
           >
-            <FaArrowUp className="text-xl" />
+            <FaArrowUp className="text-sm" />
           </motion.button>
         )}
       </AnimatePresence>
 
       {/* Main Footer */}
-      <footer id='footer' className="bg-gradient-to-b from-blue-500 to-blue-900 opacity-[0.95] text-white pt-10 pb-8 relative overflow-hidden">
+      <footer id='footer' className="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white pt-10 pb-8 relative overflow-hidden border-t border-zinc-200 dark:border-zinc-900 transition-all duration-300">
         
-        {/* Floating background bubble elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(15)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full bg-white/5 animate-float"
-              style={{
-                width: `${Math.random() * 80 + 20}px`,
-                height: `${Math.random() * 80 + 20}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${i * 0.5}s`,
-                animationDuration: `${Math.random() * 10 + 10}s`,
-              }}
-            />
-          ))}
-        </div>
-
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Main Animated Content */}
           <motion.div 
@@ -76,12 +58,13 @@ const Footer = () => {
           >
             {/* Social Links */}
             <div className="text-center mb-10">
+              <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block">// TERMINATION_LOGS</span>
               <motion.h2 
-                initial={{ opacity: 0, y: -10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1, duration: 0.5 }}
-                className="text-2xl sm:text-3xl font-extrabold mb-8 text-white tracking-wide uppercase"
+                initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-4xl sm:text-6xl lg:text-7xl font-black mb-8 text-zinc-900 dark:text-white tracking-tighter uppercase"
               >
                 Follow My Journey
               </motion.h2>
@@ -109,12 +92,8 @@ const Footer = () => {
                       hidden: { opacity: 0, y: 15, scale: 0.8 },
                       visible: { opacity: 1, y: 0, scale: 1 }
                     }}
-                    whileHover={{ y: -6, scale: 1.08 }}
-                    className={`
-                      text-xl sm:text-3xl transition-all duration-300 
-                      bg-white/10 backdrop-blur-md p-4 sm:p-5 rounded-2xl
-                      hover:bg-white/20 hover:shadow-xl ${social.color}
-                    `}
+                    whileHover={{ y: -4 }}
+                    className="text-lg sm:text-xl transition-all duration-300 bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-900 p-3 sm:p-4 rounded-none text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900"
                     aria-label={social.label}
                   >
                     {social.icon}
@@ -124,30 +103,20 @@ const Footer = () => {
             </div>
 
             {/* Accent Separator Line */}
-            <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8" />
+            <div className="h-[1px] bg-zinc-200 dark:bg-zinc-900 mb-8" />
 
             {/* Copyright */}
             <div className="text-center">
-              <p className="text-blue-100 text-sm sm:text-base font-medium">
+              <p className="text-zinc-550 dark:text-zinc-400 text-xs sm:text-sm font-mono tracking-wider">
                 &copy; {new Date().getFullYear()} Subash M R. All rights reserved.
               </p>
-              <p className="text-blue-200/80 text-xs sm:text-sm mt-2 font-light">
-                Crafted with ❤️ using React, Tailwind CSS & Framer Motion
+              <p className="text-zinc-650 text-zinc-650 text-[10px] mt-2 font-mono">
+                System: React / Tailwind CSS / Framer Motion / Lenis Scroll
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Global style variables for floating circles */}
-        <style jsx>{`
-          @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-          }
-          .animate-float {
-            animation: float ease-in-out infinite;
-          }
-        `}</style>
       </footer>
     </>
   );

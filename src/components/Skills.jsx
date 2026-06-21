@@ -1,37 +1,32 @@
-import { useState } from "react";
 import { softSkills, technicalSkills } from "./Data";
-import { motion } from "framer-motion";
-import { FaLaptopCode, FaDatabase, FaCogs, FaCheckCircle } from "react-icons/fa";
+import { FaLaptopCode, FaDatabase, FaCogs } from "react-icons/fa";
+import { BlurReveal } from "./BlurReveal";
 
 const Skills = () => {
-  const [hoveredSkill, setHoveredSkill] = useState(null);
-
-  // Segment technical skills into clear, instantly readable categories
   const categories = [
     {
       id: "frontend",
       title: "Frontend Engineering",
-      icon: <FaLaptopCode className="text-xl sm:text-2xl text-blue-500" />,
+      icon: <FaLaptopCode className="text-xl" />,
       skills: technicalSkills.filter(s => ["React", "TypeScript", "JavaScript", "Tailwind", "Bootstrap"].includes(s.name)),
       description: "Developing dynamic UI frameworks, component architectures, and responsive templates."
     },
     {
       id: "cms",
       title: "CMS & E-Commerce",
-      icon: <FaDatabase className="text-xl sm:text-2xl text-purple-500" />,
+      icon: <FaDatabase className="text-xl" />,
       skills: technicalSkills.filter(s => ["WordPress", "Elementor", "WooCommerce", "Shopify"].includes(s.name)),
-      description: "Mastered during YS Innovation Startup internship in Coimbatore to build fast e-commerce engines."
+      description: "Building fast e-commerce engines, custom themes, and payment gateways."
     },
     {
       id: "tools",
       title: "Workflow & Markups",
-      icon: <FaCogs className="text-xl sm:text-2xl text-slate-500" />,
+      icon: <FaCogs className="text-xl" />,
       skills: technicalSkills.filter(s => ["GitHub", "HTML5", "CSS3"].includes(s.name)),
       description: "Collaborative Git controls, structural markup patterns, and template layouts."
     }
   ];
 
-  // Concise, highly understandable notes for each skill
   const getSkillNote = (name) => {
     const notes = {
       TypeScript: "Coded type-safe APIs as a Full Stack Intern at YS Innovation Startup.",
@@ -50,195 +45,126 @@ const Skills = () => {
     return notes[name] || "Mastered and deployed successfully across active projects.";
   };
 
+  const getSkillStatus = (name) => {
+    const statuses = {
+      TypeScript: "PRODUCTION READY",
+      WordPress: "INTERNSHIP EXP",
+      WooCommerce: "INTERNSHIP EXP",
+      Shopify: "RUNNING",
+      Elementor: "INTERNSHIP EXP",
+      React: "ACTIVE CORE",
+      JavaScript: "ACTIVE CORE",
+      Tailwind: "ACTIVE CORE",
+      Bootstrap: "LEGACY COMPENSATED",
+      HTML5: "COMPLIANT / SECURE",
+      CSS3: "COMPLIANT / SECURE",
+      GitHub: "TEAM VERIFIED"
+    };
+    return statuses[name] || "DEPLOYED";
+  };
+
+  const renderVisualLevel = (level) => {
+    const filled = Math.round(level / 10);
+    const empty = 10 - filled;
+    return (
+      <div className="flex gap-1 mt-1.5 transition-all duration-300">
+        {[...Array(filled)].map((_, i) => (
+          <span key={`f-${i}`} className="w-2 h-2 bg-zinc-900 dark:bg-zinc-150 dark:bg-zinc-200 border border-zinc-900 dark:border-zinc-200 transition-all duration-300" />
+        ))}
+        {[...Array(empty)].map((_, i) => (
+          <span key={`e-${i}`} className="w-2 h-2 bg-transparent border border-zinc-250 dark:border-zinc-800 transition-all duration-300" />
+        ))}
+      </div>
+    );
+  };
+
   return (
-    <div className="relative overflow-hidden bg-slate-50 py-16 sm:py-24" id="skills">
-      
-      {/* Subtle Background Ambiance */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-[100px] -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100/30 rounded-full blur-[100px] -z-10" />
+    <div className="relative overflow-hidden bg-zinc-50 dark:bg-zinc-950 py-16 sm:py-24 border-b border-zinc-200 dark:border-zinc-900 transition-all duration-300" id="skills">
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f23_1px,transparent_1px),linear-gradient(to_bottom,#1f1f23_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-[0.15] transition-all duration-300" />
 
       <div className="max-w-[1280px] mx-auto px-5 relative z-10">
         
-        {/* Instantly Understandable Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="px-4.5 py-1.5 bg-blue-50 text-blue-600 text-xs font-bold rounded-full border border-blue-100 uppercase tracking-widest inline-block mb-4">
-            Professional Capabilities
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-black bg-gradient-to-r from-slate-800 to-slate-900 bg-clip-text text-transparent mb-4 tracking-tight uppercase">
-            SKILLS & EXPERTISE
+        {/* Title Block */}
+        <div className="text-center mb-16">
+          <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block">// CAPABILITIES_MATRIX_03</span>
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-zinc-900 dark:text-white mb-4 tracking-tighter uppercase">
+            <BlurReveal text="SKILLS & EXPERTISE" />
           </h1>
-          <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto font-light leading-relaxed">
-            An overview of my technical stacks and development workflows, categorised for instant readability.
+          <p className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed">
+            <BlurReveal text="An overview of my technical stacks and development workflows, categorised for instant readability." isParagraph={true} />
           </p>
-        </motion.div>
+        </div>
 
-        {/* Dynamic Category Clusters */}
-        <div className="space-y-16 mb-20">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category) => (
-            <div key={category.id} className="space-y-6">
-              
-              {/* Category Subheader */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-4 gap-2">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div 
+              key={category.id} 
+              className="relative border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/10 p-6 flex flex-col justify-between rounded-none shadow-sm transition-all duration-300 hover:border-zinc-450 dark:hover:border-zinc-700"
+            >
+              {/* Corner Plus Sign HUD Decorations */}
+              <span className="absolute -top-[1px] -left-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
+              <span className="absolute -top-[1px] -right-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
+              <span className="absolute -bottom-[1px] -left-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
+              <span className="absolute -bottom-[1px] -right-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
+
+              <div className="space-y-6">
+                {/* Category Header */}
+                <div className="flex items-center gap-3 border-b border-zinc-200 dark:border-zinc-900 pb-3 transition-all duration-300">
+                  <div className="p-2 bg-zinc-100 dark:bg-zinc-905 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-705 text-zinc-700 dark:text-zinc-300 transition-all duration-300">
                     {category.icon}
                   </div>
                   <div>
-                    <h2 className="text-xl sm:text-2xl font-black text-slate-800 uppercase tracking-tight">
+                    <h2 className="text-sm font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                       {category.title}
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-500">
-                      {category.description}
-                    </p>
+                    <span className="text-[9px] text-zinc-400 font-mono tracking-widest block uppercase mt-0.5">
+                      SYS_SEC_DEV_LOAD: ACTIVE
+                    </span>
                   </div>
                 </div>
-              </div>
 
-              {/* Skill Matrix Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.skills.map((skill) => {
-                  const isHovered = hoveredSkill === skill.name;
-                  return (
-                    <motion.div
+                {/* Skills Stack List */}
+                <div className="space-y-4">
+                  {category.skills.map((skill) => (
+                    <div 
                       key={skill.name}
-                      onMouseEnter={() => setHoveredSkill(skill.name)}
-                      onMouseLeave={() => setHoveredSkill(null)}
-                      whileHover={{ y: -6 }}
-                      className={`
-                        bg-white rounded-3xl p-5 border shadow-sm flex items-center justify-between gap-5 transition-all duration-300 relative overflow-hidden cursor-pointer
-                        ${isHovered 
-                          ? 'border-blue-300 shadow-xl shadow-blue-500/5 ring-4 ring-blue-500/5' 
-                          : 'border-slate-100 hover:border-blue-200'
-                        }
-                      `}
+                      className="border border-zinc-200/60 dark:border-zinc-900/60 bg-white/90 dark:bg-zinc-950/20 p-3 sm:p-4 transition-all duration-300"
                     >
-                      {/* Left: Glowing Icon & Text */}
-                      <div className="flex items-center gap-4">
-                        <div className={`p-3.5 rounded-2xl ${skill.bg} text-3xl transition-transform duration-300 ${isHovered ? 'scale-110 rotate-3' : ''}`}>
-                          {skill.icon}
+                      <div className="flex items-center justify-between mb-1.5">
+                        <div className="flex items-center gap-2">
+                          <span className="text-zinc-500 dark:text-zinc-400 text-sm">{skill.icon}</span>
+                          <span className="font-mono text-xs font-bold text-zinc-800 dark:text-zinc-200 uppercase">{skill.name}</span>
                         </div>
-                        <div>
-                          <span className="font-extrabold text-sm sm:text-base text-slate-800 block">
-                            {skill.name}
-                          </span>
-                          <span className="text-[10px] sm:text-xs text-slate-500 leading-normal block max-w-[170px] font-light">
-                            {getSkillNote(skill.name)}
-                          </span>
-                        </div>
+                        <span className="font-mono text-[8px] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800/80 px-1.5 py-0.5 text-zinc-500 dark:text-zinc-400 transition-all duration-300">
+                          {getSkillStatus(skill.name)}
+                        </span>
                       </div>
+                      
+                      <p className="text-[10px] text-zinc-500 dark:text-zinc-450 dark:text-zinc-400 leading-relaxed font-light">
+                        {getSkillNote(skill.name)}
+                      </p>
 
-                      {/* Right: Highly Understandable Progress Dial */}
-                      <div className="relative w-14 h-14 flex items-center justify-center bg-slate-50 rounded-2xl shadow-inner border border-slate-100 shrink-0">
-                        <svg className="w-full h-full transform -rotate-90">
-                          <circle cx="28" cy="28" r="21" stroke="#e2e8f0" strokeWidth="3" fill="transparent" />
-                          <motion.circle 
-                            cx="28" 
-                            cy="28" 
-                            r="21" 
-                            stroke="#3b82f6" 
-                            strokeWidth="3" 
-                            strokeDasharray={132}
-                            initial={{ strokeDashoffset: 132 }}
-                            whileInView={{ strokeDashoffset: 132 - (132 * skill.level) / 100 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.2, ease: "easeOut" }}
-                            strokeLinecap="round" 
-                            fill="transparent" 
-                          />
-                        </svg>
-                        <span className="absolute text-xs text-slate-800 font-extrabold">{skill.level}%</span>
+                      <div className="mt-2.5 pt-2.5 border-t border-zinc-100 dark:border-zinc-900/60 flex items-center justify-between transition-all duration-300">
+                        <span className="font-mono text-[8px] text-zinc-400 uppercase tracking-widest">Efficiency index</span>
+                        {renderVisualLevel(skill.level)}
                       </div>
-
-                      {/* Decorative colored glow on card back */}
-                      <div className={`absolute -right-12 -bottom-12 w-24 h-24 rounded-full blur-2xl opacity-10 bg-gradient-to-br ${skill.color} transition-all duration-300 ${isHovered ? 'scale-150' : ''}`} />
-                    </motion.div>
-                  );
-                })}
+                    </div>
+                  ))}
+                </div>
               </div>
-
             </div>
           ))}
         </div>
 
-        {/* Soft Skills Section: Sleek Clean Cards */}
-        <section className="mb-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-wide uppercase">
-              Core Interpersonal Core
-            </h2>
-            <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto font-light leading-relaxed">
-              Personal collaborative parameters driving successful full-stack deployments.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {softSkills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.08 }}
-                whileHover={{ y: -6 }}
-                className="relative cursor-pointer"
-              >
-                <div className="h-full bg-white rounded-3xl shadow-sm border border-slate-100 p-6 flex flex-col items-center text-center transition-all duration-300 overflow-hidden hover:border-blue-500/80 hover:shadow-lg">
-                  {/* Glowing Soft Icon Container */}
-                  <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 mb-4 text-white shadow-md">
-                    <div className="text-2xl">
-                      {skill.icon}
-                    </div>
-                  </div>
-
-                  <h3 className="font-extrabold text-base text-slate-800 mb-2">
-                    {skill.name}
-                  </h3>
-                  
-                  <p className="text-slate-500 text-xs leading-relaxed font-light">
-                    {skill.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
       </div>
 
-      {/* Decorative Wave Divider */}
-      <div className="relative mt-8 md:mt-16 w-full overflow-hidden leading-[0]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" className="w-full h-auto">
-          <path 
-            fill="currentColor" 
-            className="text-blue-500"
-            fillOpacity="0.9"
-            d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,90.7C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          >
-            <animate 
-              attributeName="d"
-              dur="20s"
-              repeatCount="indefinite"
-              values="
-                M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,90.7C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                M0,160L48,170.7C96,181,192,203,288,202.7C384,203,480,181,576,176C672,171,768,181,864,186.7C960,192,1056,192,1152,181.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,90.7C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z
-              "
-            />
-          </path>
-        </svg>
+      {/* Sleek Horizontal HUD divider */}
+      <div className="relative w-full h-[1px] bg-zinc-200 dark:bg-zinc-900/80 mt-16 transition-all duration-300">
+        <span className="absolute left-6 -translate-y-1/2 font-mono text-[10px] text-zinc-400 dark:text-zinc-700 select-none pointer-events-none transition-all duration-300">+</span>
+        <span className="absolute right-6 -translate-y-1/2 font-mono text-[10px] text-zinc-400 dark:text-zinc-700 select-none pointer-events-none transition-all duration-300">+</span>
       </div>
-
     </div>
   );
 };

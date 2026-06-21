@@ -15,11 +15,28 @@
   --color-blue-900: #003180;
 }
 
-body{
-  font-family: 'Poppins',sans-serif;
-  background-color: #F7F7F7;
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300;
 }
 
+/* Custom scrollbar matching HUD style */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-zinc-50 dark:bg-zinc-950;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 dark:bg-zinc-800;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400 dark:bg-zinc-700;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace !important;
+}
 
 .cursor-dot {
   transition: left 0.08s linear, top 0.08s linear;

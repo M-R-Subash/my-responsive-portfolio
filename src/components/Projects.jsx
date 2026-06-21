@@ -1,218 +1,123 @@
-import { useState, useEffect } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import { PROJECTS } from "./Data";
-import { motion, AnimatePresence } from "framer-motion";
+import { BlurReveal } from "./BlurReveal";
 
 const Projects = () => {
-  const [visibleCount, setVisibleCount] = useState(0);
-  const [itemsPerLoad, setItemsPerLoad] = useState(3);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setWindowWidth(width);
-      
-      if (width < 640) { // Mobile
-        setItemsPerLoad(3);
-        setVisibleCount(prev => Math.min(prev, 2));
-      } else if (width < 1024) { 
-        setItemsPerLoad(2);
-        setVisibleCount(prev => Math.min(prev, 4));
-      } else { 
-        setItemsPerLoad(3);
-        setVisibleCount(prev => Math.min(prev, 6));
-      }
+  const getProjectStatus = (name) => {
+    const statuses = {
+      "E-COMMERCE WEBSITE": "DEPLOYED / ONLINE",
+      "NIKE LANDING PAGE": "DEPLOYED / PROD",
+      "WHETHER APP": "STABLE / API_LIVE",
+      "SERVICE PAGE": "STABLE / MOTION",
+      "TASK MANAGER": "ARCHIVED / LOCAL",
+      "WHITEBOARD": "DEPLOYED / ONLINE"
     };
-
-    handleResize(); 
-    window.addEventListener('resize', handleResize);
-    
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (windowWidth < 640) { 
-      setVisibleCount(2);
-    } else if (windowWidth < 1024) { 
-      setVisibleCount(4);
-    } else { 
-      setVisibleCount(3);
-    }
-  }, [windowWidth]);
-
-  const loadMore = () => {
-    setVisibleCount(prev => Math.min(prev + itemsPerLoad, PROJECTS.length));
+    return statuses[name] || "COMPLETED";
   };
 
-  const visibleProjects = PROJECTS.slice(0, visibleCount);
-  const hasMoreProjects = visibleCount < PROJECTS.length;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.96 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 70,
-        damping: 14
-      }
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.95,
-      y: 20,
-      transition: { duration: 0.25 }
-    }
-  };
-
-  const headerVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+  const getProjectId = (index) => {
+    return `PRJ-00${index + 1}`;
   };
 
   return (
-    <div className="pt-16 sm:pt-24 overflow-hidden" id="projects">
+    <div className="pt-16 sm:pt-24 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-all duration-300 overflow-hidden" id="projects">
       
-      {/* Animated Header */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={headerVariants}
-        className="text-center mb-16"
-      >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent mb-4 uppercase">
-          Projects
-        </h1>
-        <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full mb-6" />
-        <h3 className="inline-block font-bold text-gray-700 border-b-2 border-blue-500 pb-1 text-sm sm:text-base tracking-[3px] uppercase">
-          Personal Projects
-        </h3>
-      </motion.div>
-      
-      {/* Projects Grid Section Wrapper */}
-      <section className="max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-20">
-        <motion.div 
-          layout
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {visibleProjects.map((project, index) => (
-              <motion.div 
-                layout
-                key={project.name}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                exit="exit"
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white rounded-2xl shadow-md hover:shadow-xl border border-slate-100 hover:border-blue-200 overflow-hidden transition-all duration-300 flex flex-col h-full relative group cursor-pointer"
-              >
-                {/* Visual Accent top border bar */}
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-20" />
-                
-                {/* Cover Image Container */}
-                <div className="w-full h-48 overflow-hidden relative">
+      <div className="max-w-[1280px] mx-auto px-5 relative z-10">
+        
+        {/* Instantly Understandable HUD Header */}
+        <div className="text-center mb-16">
+          <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block">// APPLICATION_LOG_04</span>
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white mb-4 uppercase">
+            <BlurReveal text="PROJECTS" />
+          </h1>
+          <div className="w-16 h-[1px] bg-zinc-200 dark:bg-zinc-800 mx-auto mb-6 transition-all duration-300" />
+          <p className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed">
+            <BlurReveal text="A complete architectural archive of my developed applications, cloned landing pages, and responsive interface setups." isParagraph={true} />
+          </p>
+        </div>
+
+        {/* Dashboard Grid Container */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          {PROJECTS.map((project, index) => (
+            <div 
+              key={project.name}
+              className="relative border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/10 p-6 flex flex-col justify-between rounded-none shadow-sm transition-all duration-300 hover:border-zinc-450 dark:hover:border-zinc-700 min-h-[490px]"
+            >
+              {/* Corner Plus Sign HUD Decorations */}
+              <span className="absolute -top-[1px] -left-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
+              <span className="absolute -top-[1px] -right-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
+              <span className="absolute -bottom-[1px] -left-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
+              <span className="absolute -bottom-[1px] -right-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
+
+              <div className="space-y-4">
+                {/* Header Metadata */}
+                <div className="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-900 pb-3.5 transition-all duration-300">
+                  <span className="font-mono text-[9px] text-zinc-550 text-zinc-400 tracking-wider">
+                    {getProjectId(index)}
+                  </span>
+                  <span className="font-mono text-[8px] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-850 px-2 py-0.5 text-zinc-500 dark:text-zinc-400 transition-all duration-300">
+                    {getProjectStatus(project.name)}
+                  </span>
+                </div>
+
+                {/* Cover Image Viewport Panel */}
+                <div className="relative border border-zinc-200 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-950 overflow-hidden h-44 sm:h-48 rounded-none group transition-all duration-300">
                   <img 
                     src={project.image} 
                     alt={project.name} 
-                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" 
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out filter grayscale group-hover:grayscale-0 group-hover:scale-105" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-zinc-950/15 group-hover:bg-transparent transition-opacity duration-300" />
                 </div>
 
-                {/* Card Content */}
-                <div className="p-6 flex flex-col flex-grow relative z-10">
-                  <h3 className="font-bold text-xl mb-2 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                {/* Details */}
+                <div>
+                  <h3 className="font-mono text-base font-extrabold tracking-widest text-zinc-900 dark:text-white uppercase mb-1">
                     {project.name}
                   </h3>
                   
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed flex-grow">
+                  <div className="font-mono text-[9px] text-zinc-450 dark:text-zinc-500 tracking-wider mb-3">
+                    <span className="font-bold text-zinc-650 dark:text-zinc-405 dark:text-zinc-400">STACK:</span> {project.tools.toUpperCase()}
+                  </div>
+
+                  <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed font-light">
                     {project.description}
                   </p>
-                  
-                  <div className="mt-auto">
-                    <p className="text-xs text-blue-500 font-bold mb-4 tracking-wider uppercase">
-                      {project.tools}
-                    </p>
-                    
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-sm font-extrabold text-blue-600 hover:text-blue-800 transition-colors duration-200"
-                    >
-                      View Live Project <FaLocationArrow className="ml-1.5 text-xs transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                    </a>
-                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-        
-        {/* Load More Button Container */}
-        {hasMoreProjects && (
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-center mt-12"
-          >
-            <button 
-              onClick={loadMore}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3.5 px-8 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-            >
-              Load More Projects
-            </button>
-          </motion.div>
-        )}
-      </section>
+              </div>
 
-      {/* Decorative Wave Separator */}
-      <div className="relative mt-8 md:mt-16 w-full overflow-hidden leading-[0]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" className="w-full h-auto">
-          <path 
-            fill="currentColor" 
-            className="text-blue-500"
-            fillOpacity="0.9"
-            d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,90.7C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          >
-            <animate 
-              attributeName="d"
-              dur="20s"
-              repeatCount="indefinite"
-              values="
-                M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,90.7C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                M0,160L48,170.7C96,181,192,203,288,202.7C384,203,480,181,576,176C672,171,768,181,864,186.7C960,192,1056,192,1152,181.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
-                M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,90.7C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z
-              "
-            />
-          </path>
-        </svg>
+              {/* View Live Link / Launch */}
+              <div className="pt-4 border-t border-zinc-150 dark:border-zinc-900 mt-5 transition-all duration-300">
+                {project.link !== "#" ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 border border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-200 py-2.5 font-mono text-[10px] font-extrabold tracking-wider transition-all duration-300 rounded-none uppercase"
+                  >
+                    <span>LAUNCH PROJECT</span>
+                    <FaLocationArrow className="text-[8px]" />
+                  </a>
+                ) : (
+                  <div
+                    className="w-full flex items-center justify-center gap-2 border border-zinc-200 dark:border-zinc-900 bg-transparent text-zinc-400 dark:text-zinc-650 py-2.5 font-mono text-[10px] font-extrabold tracking-wider transition-all duration-300 rounded-none cursor-not-allowed uppercase"
+                  >
+                    <span>LOCAL PREVIEW ONLY</span>
+                  </div>
+                )}
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      {/* Sleek Horizontal HUD divider */}
+      <div className="relative w-full h-[1px] bg-zinc-200 dark:bg-zinc-900/80 mt-16 transition-all duration-300">
+        <span className="absolute left-6 -translate-y-1/2 font-mono text-[10px] text-zinc-400 dark:text-zinc-700 select-none pointer-events-none">+</span>
+        <span className="absolute right-6 -translate-y-1/2 font-mono text-[10px] text-zinc-400 dark:text-zinc-700 select-none pointer-events-none">+</span>
       </div>
 
     </div>
