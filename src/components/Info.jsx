@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import profile from '../assets/profile.jpg';
-import { FaGithub, FaInstagram, FaLinkedin, FaFacebook, FaDownload } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
 import { BsSuitcaseLgFill } from "react-icons/bs";
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -90,8 +90,6 @@ const Info = () => {
 
   const socialLinks = [
     { icon: <FaGithub />, href: "https://github.com/M-R-Subash", color: "hover:text-gray-700" },
-    { icon: <FaInstagram />, href: "https://www.instagram.com/hatred_world", color: "hover:text-pink-500" },
-    { icon: <FaFacebook />, href: "https://www.facebook.com/share/19Ba2YiC3G/", color: "hover:text-blue-600" },
     { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/m-r-subash-b676a0291", color: "hover:text-blue-700" },
   ];
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaGithub, FaInstagram, FaLinkedin, FaFacebook, FaArrowUp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaArrowUp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Footer = () => {
@@ -20,8 +20,6 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: <FaGithub />, href: "https://github.com/M-R-Subash", label: "GitHub", color: "hover:text-gray-300 hover:shadow-gray-400/20" },
-    { icon: <FaInstagram />, href: "https://www.instagram.com/hatred_world", label: "Instagram", color: "hover:text-pink-300 hover:shadow-pink-400/20" },
-    { icon: <FaFacebook />, href: "https://www.facebook.com/share/19Ba2YiC3G/", label: "Facebook", color: "hover:text-blue-300 hover:shadow-blue-400/20" },
     { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/m-r-subash-b676a0291", label: "LinkedIn", color: "hover:text-blue-400 hover:shadow-blue-400/20" },
   ];
 
