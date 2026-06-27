@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import { PROJECTS } from "./Data";
-import { motion } from "framer-motion";
+import ScrollReveal from "./ScrollReveal";
 import ScrambleText from "./ScrambleText";
 
 const Projects = () => {
@@ -31,44 +31,44 @@ const Projects = () => {
         
         {/* Instantly Understandable HUD Header */}
         <div className="text-center mb-16">
-          <motion.span 
+          <ScrollReveal 
+            as="span"
             initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block"
           >
             // PRODUCTION_WORK_DATABASE_04
-          </motion.span>
-          <motion.h1 
+          </ScrollReveal>
+          <ScrollReveal 
+            as="h1"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white mb-4 uppercase"
           >
             REAL-WORLD PROJECTS
-          </motion.h1>
+          </ScrollReveal>
           <div className="w-16 h-[1px] bg-zinc-200 dark:bg-zinc-800 mx-auto mb-6 transition-all duration-300" />
-          <motion.p 
+          <ScrollReveal 
+            as="p"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed"
           >
             A curated archive of active production websites, client platforms, and custom-designed e-commerce stores built during my professional career.
-          </motion.p>
+          </ScrollReveal>
         </div>
 
         {/* Dashboard Grid Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {PROJECTS.map((project, index) => (
-            <motion.div 
+            <ScrollReveal 
               key={project.name}
+              as="div"
               initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
               className="relative border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/10 p-6 flex flex-col justify-between rounded-none shadow-sm transition-colors duration-300 hover:border-zinc-400 dark:hover:border-zinc-700 min-h-[490px]"
             >
@@ -145,7 +145,7 @@ const Projects = () => {
                 )}
               </div>
 
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
 

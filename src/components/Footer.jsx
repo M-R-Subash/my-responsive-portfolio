@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaArrowUp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import ScrollReveal from "./ScrollReveal";
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -51,30 +52,29 @@ const Footer = () => {
         
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Main Animated Content */}
-          <motion.div 
+          <ScrollReveal 
+            as="div"
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-4xl mx-auto"
           >
             {/* Social Links */}
             <div className="text-center mb-10">
               <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block">// TERMINATION_LOGS</span>
-              <motion.h2 
+              <ScrollReveal 
+                as="h2"
                 initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-100px" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="text-4xl sm:text-6xl lg:text-7xl font-black mb-8 text-zinc-900 dark:text-white tracking-tighter uppercase"
               >
                 Follow My Journey
-              </motion.h2>
+              </ScrollReveal>
 
-              <motion.div 
+              <ScrollReveal 
+                as="div"
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
                 variants={{
                   hidden: { opacity: 0 },
                   visible: {
@@ -105,7 +105,7 @@ const Footer = () => {
                     {social.icon}
                   </motion.a>
                 ))}
-              </motion.div>
+              </ScrollReveal>
             </div>
 
             {/* Accent Separator Line */}
@@ -120,7 +120,7 @@ const Footer = () => {
                 System: React / Tailwind CSS / Framer Motion / Lenis Scroll
               </p>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
 
       </footer>

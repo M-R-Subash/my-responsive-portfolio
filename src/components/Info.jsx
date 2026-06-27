@@ -18,7 +18,18 @@ const Info = () => {
   
   const titles = ['Web Developer', 'Full Stack Intern', 'CMS Developer', 'Frontend Developer'];
   const containerRef = useRef(null);
-  
+
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -27,6 +38,9 @@ const Info = () => {
   const yProfile = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const yText = useTransform(scrollYProgress, [0, 1], [0, -20]);
   const opacityFade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  const textScrollStyle = isMobile ? {} : { y: yText, opacity: opacityFade };
+  const profileScrollStyle = isMobile ? {} : { y: yProfile, opacity: opacityFade };
 
   useEffect(() => {
     const handleTyping = () => {
@@ -108,7 +122,7 @@ const Info = () => {
               initial={{ opacity: 0, x: -60, filter: "blur(12px)" }}
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-              style={{ y: yText, opacity: opacityFade }}
+              style={textScrollStyle}
               className="lg:w-1/2 text-center lg:text-left"
             >
               <div className="mb-6">
@@ -192,7 +206,7 @@ const Info = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 50, damping: 12, delay: 0.3 }}
-              style={{ y: yProfile, opacity: opacityFade }}
+              style={profileScrollStyle}
               className="lg:w-1/2 flex justify-center relative"
             >
               <div 

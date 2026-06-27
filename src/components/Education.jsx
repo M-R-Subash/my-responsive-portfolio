@@ -1,6 +1,6 @@
 import { educationData } from './Data';
 import { FaCalendarAlt, FaAward, FaGraduationCap, FaBriefcase } from "react-icons/fa";
-import { motion } from "framer-motion";
+import ScrollReveal from './ScrollReveal';
 
 const Education = () => {
   const getInstitutionIcon = (edu) => {
@@ -17,44 +17,44 @@ const Education = () => {
         
         {/* Title Header */}
         <div className="text-center mb-20">
-          <motion.span 
+          <ScrollReveal 
+            as="span"
             initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block"
           >
             // EDUCATION_DATABASE_02
-          </motion.span>
-          <motion.h1 
+          </ScrollReveal>
+          <ScrollReveal 
+            as="h1"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white mb-4 uppercase"
           >
             EDUCATION
-          </motion.h1>
+          </ScrollReveal>
           <div className="w-16 h-[1px] bg-zinc-200 dark:bg-zinc-800 mx-auto mb-6 transition-all duration-300" />
-          <motion.p 
+          <ScrollReveal 
+            as="p"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed"
           >
             A complete chronological directory of my academic credentials, research journal, and formal schooling.
-          </motion.p>
+          </ScrollReveal>
         </div>
 
         {/* Vertical Timeline Track */}
         <div className="relative border-l border-zinc-200 dark:border-zinc-900 ml-4 sm:ml-8 pl-8 sm:pl-12 space-y-12 transition-all duration-300">
           {educationData.map((edu, index) => (
-            <motion.div 
+            <ScrollReveal 
               key={edu.id} 
+              as="div"
               initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
               className="relative group"
             >
@@ -138,7 +138,7 @@ const Education = () => {
                   )}
                 </div>
               </div>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
 
@@ -151,11 +151,11 @@ const Education = () => {
               { label: "Research Papers", value: "1", desc: "Credit card Fraud Detection" },
               { label: "Academic Grade Avg", value: "71.5%", desc: "BSc & MSc Average" }
             ].map((stat, idx) => (
-              <motion.div 
+              <ScrollReveal 
                 key={stat.label}
+                as="div"
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                 className="bg-white/70 dark:bg-zinc-900/15 border border-zinc-200 dark:border-zinc-900/80 p-5 rounded-none relative overflow-hidden group transition-colors duration-300"
               >
@@ -174,7 +174,7 @@ const Education = () => {
                 <div className="text-[9px] font-mono text-zinc-400 transition-colors">
                   {stat.desc}
                 </div>
-              </motion.div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

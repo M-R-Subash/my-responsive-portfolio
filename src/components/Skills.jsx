@@ -1,6 +1,6 @@
 import { softSkills, technicalSkills } from "./Data";
 import { FaLaptopCode, FaDatabase, FaCogs } from "react-icons/fa";
-import { motion } from "framer-motion";
+import ScrollReveal from "./ScrollReveal";
 
 const Skills = () => {
   const categories = [
@@ -74,43 +74,43 @@ const Skills = () => {
         
         {/* Title Block */}
         <div className="text-center mb-16">
-          <motion.span 
+          <ScrollReveal 
+            as="span"
             initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block"
           >
             // CAPABILITIES_MATRIX_03
-          </motion.span>
-          <motion.h1 
+          </ScrollReveal>
+          <ScrollReveal 
+            as="h1"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-7xl lg:text-8xl font-black text-zinc-900 dark:text-white mb-4 tracking-tighter uppercase"
           >
             SKILLS & EXPERTISE
-          </motion.h1>
-          <motion.p 
+          </ScrollReveal>
+          <ScrollReveal 
+            as="p"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed"
           >
             An overview of my technical stacks and development workflows, categorised for instant readability.
-          </motion.p>
+          </ScrollReveal>
         </div>
 
         {/* Diagonal HUD Grid tracks */}
         <div className="space-y-12">
           {categories.map((category, index) => (
-            <motion.div 
+            <ScrollReveal 
               key={category.id} 
+              as="div"
               initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
               className="flex flex-col lg:flex-row gap-6 relative border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/10 p-6 sm:p-8 rounded-none shadow-sm transition-colors duration-300 hover:border-zinc-400 dark:hover:border-zinc-700"
             >
@@ -167,7 +167,7 @@ const Skills = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
 

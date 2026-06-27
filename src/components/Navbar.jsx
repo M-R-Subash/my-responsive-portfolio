@@ -64,6 +64,7 @@ const Navbar = ({ theme, setTheme }) => {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 80, damping: 15 }}
+        style={{ position: 'fixed' }}
         className={`
           fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-zinc-950/80 backdrop-blur-md
           transition-all duration-300 border-b border-zinc-200 dark:border-zinc-800/80
@@ -94,13 +95,13 @@ const Navbar = ({ theme, setTheme }) => {
                   key={item.id}
                   onClick={() => handleScroll(item.id)}
                   className={`
-                    relative px-4 py-2 mx-1 font-mono text-xs tracking-widest transition-all duration-300 rounded-none
+                    relative px-4 py-4 mx-1 font-mono text-xs tracking-widest transition-all duration-300 rounded-none
                     ${activeSection === item.id ? "text-zinc-900 dark:text-white font-bold" : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"}
                   `}
                 >
                   {item.label}
                   <span className={`
-                    absolute bottom-0 left-4 right-4 h-[1px] bg-zinc-900 dark:bg-white transition-all duration-300 transform
+                    absolute bottom-3 left-4 right-4 h-[1px] bg-zinc-900 dark:bg-white transition-all duration-300 transform
                     ${activeSection === item.id ? "scale-x-100" : "scale-x-0"}
                   `}></span>
                 </button>
