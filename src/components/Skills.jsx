@@ -29,7 +29,7 @@ const Skills = () => {
 
   const getSkillNote = (name) => {
     const notes = {
-      TypeScript: "Coded type-safe APIs as a Full Stack Intern at YS Innovation Startup.",
+      TypeScript: "Coded type-safe APIs as a Full Stack Intern at YS Innovation.",
       WordPress: "Engineered customized page themes and user dashboards at YS Innovation.",
       WooCommerce: "Configured store catalogs, payment gateway hooks, and shopping loops.",
       Shopify: "Optimized modern liquid store setups and tailored visual options.",
@@ -66,7 +66,7 @@ const Skills = () => {
 
 
   return (
-    <div className="relative overflow-hidden bg-zinc-50 dark:bg-zinc-950 py-16 sm:py-24 border-b border-zinc-200 dark:border-zinc-900 transition-all duration-300" id="skills">
+    <div className="relative overflow-hidden bg-zinc-50 dark:bg-zinc-950 py-16 sm:py-24 transition-all duration-300" id="skills">
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f23_1px,transparent_1px),linear-gradient(to_bottom,#1f1f23_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-[0.15] transition-all duration-300" />
 
@@ -112,7 +112,7 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              className="flex flex-col lg:flex-row gap-6 relative border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/10 p-6 sm:p-8 rounded-none shadow-sm transition-colors duration-300 hover:border-zinc-450 dark:hover:border-zinc-700"
+              className="flex flex-col lg:flex-row gap-6 relative border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/10 p-6 sm:p-8 rounded-none shadow-sm transition-colors duration-300 hover:border-zinc-400 dark:hover:border-zinc-700"
             >
               {/* Corner Plus Sign HUD Decorations */}
               <span className="absolute -top-[1px] -left-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
@@ -147,7 +147,7 @@ const Skills = () => {
                 {category.skills.map((skill) => (
                   <div 
                     key={skill.name}
-                    className="border border-zinc-200/60 dark:border-zinc-900/60 bg-white/90 dark:bg-zinc-950/20 p-4 flex flex-col justify-between transition-all duration-300 hover:border-zinc-400 dark:hover:border-zinc-850"
+                    className="border border-zinc-200/60 dark:border-zinc-900/60 bg-white/90 dark:bg-zinc-950/20 p-4 flex flex-col justify-between transition-all duration-300 hover:border-zinc-400 dark:hover:border-zinc-700"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-2">

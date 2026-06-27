@@ -2,17 +2,21 @@ import { useState, useEffect } from "react";
 import { FaEnvelope, FaDownload } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
+import ScrambleText from "./ScrambleText";
 
 const Navbar = ({ theme, setTheme }) => {
   const [activeSection, setActiveSection] = useState("about");
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [connectHovered, setConnectHovered] = useState(false);
+  const [modeHovered, setModeHovered] = useState(false);
+  const [mobileModeHovered, setMobileModeHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
       
-      const sections = ["about", "education", "skills", "projects", "contact"];
+      const sections = ["about", "journey", "education", "skills", "projects"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -47,6 +51,7 @@ const Navbar = ({ theme, setTheme }) => {
 
   const navItems = [
     { id: "about", label: "ABOUT" },
+    { id: "journey", label: "JOURNEY" },
     { id: "education", label: "EDUCATION" },
     { id: "skills", label: "SKILLS" },
     { id: "projects", label: "PROJECTS" },
@@ -106,18 +111,32 @@ const Navbar = ({ theme, setTheme }) => {
             <div className="hidden lg:flex items-center space-x-3">
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                className="border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-transparent text-zinc-700 dark:text-zinc-300 px-4 py-2 font-mono text-xs tracking-wider transition-all duration-300 rounded-none"
+                onMouseEnter={() => setModeHovered(true)}
+                onMouseLeave={() => setModeHovered(false)}
+                className="cyber-btn border border-zinc-300 dark:border-zinc-600 bg-transparent text-zinc-700 dark:text-zinc-300 px-4 py-2 font-mono text-xs rounded-none"
               >
-                MODE: {theme.toUpperCase()}
+                <span className="btn-corner btn-corner-tl"></span>
+                <span className="btn-corner btn-corner-tr"></span>
+                <span className="btn-corner btn-corner-bl"></span>
+                <span className="btn-corner btn-corner-br"></span>
+                <ScrambleText text={`MODE: ${theme.toUpperCase()}`} trigger={modeHovered} />
               </button>
               <a
                 href="mailto:mrsubash1615@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-transparent hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-950 text-zinc-700 dark:text-zinc-200 px-5 py-2 font-mono text-xs tracking-wider transition-all duration-300 rounded-none"
+                onMouseEnter={() => setConnectHovered(true)}
+                onMouseLeave={() => setConnectHovered(false)}
+                className="cyber-btn flex items-center space-x-2 border border-zinc-300 dark:border-zinc-600 bg-transparent text-zinc-700 dark:text-zinc-200 px-5 py-2 font-mono text-xs rounded-none"
               >
+                <span className="btn-corner btn-corner-tl"></span>
+                <span className="btn-corner btn-corner-tr"></span>
+                <span className="btn-corner btn-corner-bl"></span>
+                <span className="btn-corner btn-corner-br"></span>
                 <FaEnvelope className="text-sm text-zinc-500 dark:text-zinc-400" />
-                <span>CONNECT</span>
+                <span>
+                  <ScrambleText text="CONNECT" trigger={connectHovered} />
+                </span>
               </a>
             </div>
 
@@ -125,9 +144,15 @@ const Navbar = ({ theme, setTheme }) => {
             <div className="lg:hidden flex items-center space-x-2">
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                className="border border-zinc-200 dark:border-zinc-700 bg-transparent text-zinc-700 dark:text-zinc-350 px-3 py-1.5 font-mono text-[9px] tracking-wider rounded-none transition-all duration-300"
+                onMouseEnter={() => setMobileModeHovered(true)}
+                onMouseLeave={() => setMobileModeHovered(false)}
+                className="cyber-btn border border-zinc-200 dark:border-zinc-700 bg-transparent text-zinc-700 dark:text-zinc-350 px-3 py-1.5 font-mono text-[9px] rounded-none"
               >
-                {theme.toUpperCase()}
+                <span className="btn-corner btn-corner-tl"></span>
+                <span className="btn-corner btn-corner-tr"></span>
+                <span className="btn-corner btn-corner-bl"></span>
+                <span className="btn-corner btn-corner-br"></span>
+                <ScrambleText text={theme.toUpperCase()} trigger={mobileModeHovered} />
               </button>
               {/* Mobile Menu Toggle */}
               <button

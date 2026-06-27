@@ -7,6 +7,7 @@ import Preloader from "./components/Preloader";
 import HUDTracker from './components/HUDTracker';
 
 // Code-split below-the-fold components for optimized initial load
+const Experience = lazy(() => import("./components/Experience"));
 const Education = lazy(() => import("./components/Education"));
 const Skills = lazy(() => import("./components/Skills"));
 const Projects = lazy(() => import("./components/Projects"));
@@ -85,6 +86,9 @@ const App = () => {
           <HUDTracker />
           <Navbar theme={theme} setTheme={setTheme} />
           <Info />
+          <Suspense fallback={<HUDSectionLoader />}>
+            <Experience />
+          </Suspense>
           <Suspense fallback={<HUDSectionLoader />}>
             <Education />
           </Suspense>

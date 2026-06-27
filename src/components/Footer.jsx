@@ -34,16 +34,20 @@ const Footer = () => {
             exit={{ scale: 0, opacity: 0 }}
             whileHover={{ y: -3 }}
             onClick={scrollToTop}
-            className="fixed bottom-24 right-8 z-50 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white p-3 rounded-none shadow-2xl transition-all duration-300"
+            className="cyber-btn fixed bottom-24 right-8 z-50 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white p-3 rounded-none shadow-2xl"
             aria-label="Scroll to top"
           >
+            <span className="btn-corner btn-corner-tl"></span>
+            <span className="btn-corner btn-corner-tr"></span>
+            <span className="btn-corner btn-corner-bl"></span>
+            <span className="btn-corner btn-corner-br"></span>
             <FaArrowUp className="text-sm" />
           </motion.button>
         )}
       </AnimatePresence>
 
       {/* Main Footer */}
-      <footer id='footer' className="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white pt-10 pb-8 relative overflow-hidden border-t border-zinc-200 dark:border-zinc-900 transition-all duration-300">
+      <footer id='footer' className="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white pt-10 pb-8 relative overflow-hidden transition-all duration-300">
         
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Main Animated Content */}
@@ -91,9 +95,13 @@ const Footer = () => {
                       visible: { opacity: 1, y: 0, scale: 1 }
                     }}
                     whileHover={{ y: -4 }}
-                    className="text-lg sm:text-xl transition-all duration-300 bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-900 p-3 sm:p-4 rounded-none text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+                    className="cyber-btn text-lg sm:text-xl bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-900 p-3 sm:p-4 rounded-none text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
                     aria-label={social.label}
                   >
+                    <span className="btn-corner btn-corner-tl"></span>
+                    <span className="btn-corner btn-corner-tr"></span>
+                    <span className="btn-corner btn-corner-bl"></span>
+                    <span className="btn-corner btn-corner-br"></span>
                     {social.icon}
                   </motion.a>
                 ))}

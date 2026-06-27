@@ -1,16 +1,19 @@
+import { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import { PROJECTS } from "./Data";
 import { motion } from "framer-motion";
+import ScrambleText from "./ScrambleText";
 
 const Projects = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const getProjectStatus = (name) => {
     const statuses = {
-      "E-COMMERCE WEBSITE": "DEPLOYED / ONLINE",
-      "NIKE LANDING PAGE": "DEPLOYED / PROD",
-      "WHETHER APP": "STABLE / API_LIVE",
-      "SERVICE PAGE": "STABLE / MOTION",
-      "TASK MANAGER": "ARCHIVED / LOCAL",
-      "WHITEBOARD": "DEPLOYED / ONLINE"
+      "YS LEADGEN": "LIVE / PRODUCTION",
+      "YS DESK": "LIVE / PRODUCTION",
+      "CHENDUR DIGITALS": "LIVE / CLIENT WORK",
+      "YS ACADEMY": "LIVE / REDESIGN",
+      "VINMAGAL": "LIVE / E-COMMERCE"
     };
     return statuses[name] || "COMPLETED";
   };
@@ -35,7 +38,7 @@ const Projects = () => {
             transition={{ duration: 0.5 }}
             className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 mb-4 block"
           >
-            // APPLICATION_LOG_04
+            // PRODUCTION_WORK_DATABASE_04
           </motion.span>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -44,7 +47,7 @@ const Projects = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white mb-4 uppercase"
           >
-            PROJECTS
+            REAL-WORLD PROJECTS
           </motion.h1>
           <div className="w-16 h-[1px] bg-zinc-200 dark:bg-zinc-800 mx-auto mb-6 transition-all duration-300" />
           <motion.p 
@@ -54,7 +57,7 @@ const Projects = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-zinc-650 dark:text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed"
           >
-            A complete architectural archive of my developed applications, cloned landing pages, and responsive interface setups.
+            A curated archive of active production websites, client platforms, and custom-designed e-commerce stores built during my professional career.
           </motion.p>
         </div>
 
@@ -67,7 +70,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
-              className="relative border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/10 p-6 flex flex-col justify-between rounded-none shadow-sm transition-colors duration-300 hover:border-zinc-450 dark:hover:border-zinc-700 min-h-[490px]"
+              className="relative border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/10 p-6 flex flex-col justify-between rounded-none shadow-sm transition-colors duration-300 hover:border-zinc-400 dark:hover:border-zinc-700 min-h-[490px]"
             >
               {/* Corner Plus Sign HUD Decorations */}
               <span className="absolute -top-[1px] -left-[1px] text-zinc-300 dark:text-zinc-700 font-bold select-none text-[10px] pointer-events-none transition-all duration-300">+</span>
@@ -81,7 +84,7 @@ const Projects = () => {
                   <span className="font-mono text-[9px] text-zinc-550 text-zinc-400 tracking-wider">
                     {getProjectId(index)}
                   </span>
-                  <span className="font-mono text-[8px] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-850 px-2 py-0.5 text-zinc-500 dark:text-zinc-400 transition-all duration-300">
+                  <span className="font-mono text-[8px] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 text-zinc-500 dark:text-zinc-400 transition-all duration-300">
                     {getProjectStatus(project.name)}
                   </span>
                 </div>
@@ -103,7 +106,7 @@ const Projects = () => {
                     {project.name}
                   </h3>
                   
-                  <div className="font-mono text-[9px] text-zinc-450 dark:text-zinc-500 tracking-wider mb-3">
+                  <div className="font-mono text-[9px] text-zinc-400 dark:text-zinc-500 tracking-wider mb-3">
                     <span className="font-bold text-zinc-650 dark:text-zinc-405 dark:text-zinc-400">STACK:</span> {project.tools.toUpperCase()}
                   </div>
 
@@ -120,9 +123,17 @@ const Projects = () => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 border border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-200 py-2.5 font-mono text-[10px] font-extrabold tracking-wider transition-all duration-300 rounded-none uppercase"
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    className="cyber-btn w-full flex items-center justify-center gap-2 border border-zinc-900 bg-zinc-900 text-white dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 hover:bg-zinc-800 dark:hover:bg-zinc-800 py-2.5 font-mono text-[10px] font-extrabold rounded-none uppercase"
                   >
-                    <span>LAUNCH PROJECT</span>
+                    <span className="btn-corner btn-corner-tl"></span>
+                    <span className="btn-corner btn-corner-tr"></span>
+                    <span className="btn-corner btn-corner-bl"></span>
+                    <span className="btn-corner btn-corner-br"></span>
+                    <span>
+                      <ScrambleText text="LAUNCH PROJECT" trigger={hoveredIndex === index} />
+                    </span>
                     <FaLocationArrow className="text-[8px]" />
                   </a>
                 ) : (

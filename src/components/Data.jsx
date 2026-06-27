@@ -1,8 +1,8 @@
-import ECommerceThumbnail from '../assets/E-Commerce.png';
-import NikeThumbnail from '../assets/NikeThumbnail.png';
-import Service from '../assets/ServiceLandingPage.png';
-import Whetherly from '../assets/Whetherly.png';
-import Whiteboard from '../assets/Whiteboard.png';
+import YSLeadGenThumbnail from '../assets/YSLeadGen.webp';
+import YSDeskThumbnail from '../assets/YSDesk.webp';
+import ChendurDigitalsThumbnail from '../assets/ChendurDigitals.webp';
+import YSAcademyThumbnail from '../assets/YSAcademy.webp';
+import VinmagalThumbnail from '../assets/Vinmagal.webp';
 import { FaGraduationCap, FaBookOpen, FaSchool, FaBriefcase, FaWordpress } from "react-icons/fa";
 import { FaHtml5, FaCss3Alt, FaReact, FaGithub } from "react-icons/fa";
 import { SiTailwindcss, SiJavascript, SiFirebase, SiBootstrap, SiTypescript, SiElementor, SiWoocommerce, SiShopify } from "react-icons/si";
@@ -10,56 +10,49 @@ import { TbBulb, TbUsers, TbBrain, TbEyeCheck, TbHeartHandshake } from "react-ic
 
 export const PROJECTS = [
     {
-      name: "E-COMMERCE WEBSITE",
-      link: "https://m-r-subash.github.io/E-Commerce-Website/",
-      image: ECommerceThumbnail,
-      description: "A feature-rich e-commerce platform with product catalog, shopping cart, user authentication, and payment integration for seamless online shopping experience.",
-      tools: "HTML, CSS, JavaScript",
+      name: "YS LEADGEN",
+      link: "https://ysleadgen.com/",
+      image: YSLeadGenThumbnail,
+      description: "Successfully developed and built all pages utilizing Elementor. Engineered custom single post pages and integrated the Gutenberg block editor with pre-defined design patterns to optimize the blogging workflow, incorporating custom shortcodes where necessary, while executing performance optimizations and bug fixes.",
+      tools: "WordPress, Elementor, Gutenberg, Shortcodes",
     },
     {
-      name: "NIKE LANDING PAGE",
-      link: "https://m-r-subash.github.io/nike-tailwind-react/",
-      image: NikeThumbnail,
-      description: "Modern Nike product showcase with interactive sliders, responsive design, and smooth animations to highlight athletic footwear and sportswear collections.",
-      tools: "React, Tailwind CSS",
+      name: "YS DESK",
+      link: "https://ysdesk.com/",
+      image: YSDeskThumbnail,
+      description: "Successfully developed and built all pages utilizing Elementor. Engineered custom single post pages and integrated the Gutenberg block editor with pre-defined design patterns to optimize the blogging workflow, incorporating custom shortcodes where necessary, while executing performance optimizations and bug fixes.",
+      tools: "WordPress, Elementor, Gutenberg, Shortcodes",
     },
     {
-      name: "WHETHER APP",
-      link: "https://m-r-subash.github.io/whether-app/",
-      image: Whetherly,
-      description: "Real-time weather forecasting application with location detection, multiple city support, and detailed meteorological data visualization interface.",
-      tools: "React, Weather API, Tailwind CSS",
+      name: "CHENDUR DIGITALS",
+      link: "https://chendurdigital.com/",
+      image: ChendurDigitalsThumbnail,
+      description: "A professional client WordPress website built and launched from scratch. Integrated Elementor for page construction, Lenis scroll library for buttery-smooth scrolling, configured Google API for secure SMTP email setup, and implemented custom shortcodes for modular functionality.",
+      tools: "WordPress, Elementor, Lenis Scroll, Google SMTP API, Shortcodes",
     },
     {
-      name: "SERVICE PAGE",
-      link: "https://m-r-subash.github.io/framer-motion-landing-page/",
-      image: Service,
-      description: "Professional service provider landing page with service catalog, booking system, client testimonials, and contact integration for business growth.",
-      tools: "React, Tailwind CSS, Framer Motion",
+      name: "YS ACADEMY",
+      link: "https://courses.ysinnovations.com/",
+      image: YSAcademyThumbnail,
+      description: "Redeveloped and modernized an existing course website with a high-end visual design. Coded custom design solutions, created lightweight, highly optimized course pages featuring interactive brochure downloads, and deployed custom shortcodes for dynamic content displays.",
+      tools: "WordPress, CSS3, Custom PHP, Shortcodes, Optimization",
     },
     {
-      name: "TASK MANAGER",
-      link: "#",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500",
-      description: "Productivity application for task organization with drag-drop functionality, deadline tracking, and team collaboration features for project management.",
-      tools: "React, Tailwind CSS, Local Storage",
-    },
-    {
-      name: "WHITEBOARD",
-      link: "http://m-r-subash.github.io/Whitespace-Web/",
-      image: Whiteboard,
-      description: "Personal portfolio website showcasing projects, skills, and professional experience with modern design and responsive layout for all devices.",
-      tools: "React, Tailwind CSS",
+      name: "VINMAGAL",
+      link: "https://vinmagal.com/",
+      image: VinmagalThumbnail,
+      description: "A collaborative Shopify e-commerce project. Managed the full product catalog upload, structured header/footer styling layouts, optimized homepage graphics, and implemented customized template designs.",
+      tools: "Shopify, Liquid, E-Commerce, UI Customization",
     },
   ];
 
-export const educationData = [
+export const experienceData = [
     {
       id: 0,
       icon: <FaBriefcase className="text-xl sm:text-3xl" />,
-      institution: "YS Innovation Startup, Coimbatore",
+      institution: "YS Innovation, Coimbatore",
       degree: "Full Stack Intern",
-      year: "2026 May - Present",
+      year: "2026 Jan - Present",
       grade: "Active",
       projects: [
         "Developing responsive, modern full-stack web applications",
@@ -68,7 +61,10 @@ export const educationData = [
         "Designing high-converting landing pages using Elementor builder"
       ],
       color: "from-blue-600 to-blue-800"
-    },
+    }
+  ];
+
+export const educationData = [
     {
       id: 1,
       icon: <FaGraduationCap className="text-xl sm:text-3xl" />,

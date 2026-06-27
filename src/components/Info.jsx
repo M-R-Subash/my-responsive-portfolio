@@ -3,6 +3,7 @@ import profile from '../assets/profile.jpg';
 import { FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
 import { BsSuitcaseLgFill } from "react-icons/bs";
 import { motion, useScroll, useTransform } from 'framer-motion';
+import ScrambleText from "./ScrambleText";
 
 const Info = () => {
   const [text, setText] = useState('');
@@ -12,6 +13,8 @@ const Info = () => {
   const [isImageHovered, setIsImageHovered] = useState(false);
   const [showDownloadMessage, setShowDownloadMessage] = useState(false);
   const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+  const [hireHovered, setHireHovered] = useState(false);
+  const [resumeHovered, setResumeHovered] = useState(false);
   
   const titles = ['Web Developer', 'Full Stack Intern', 'CMS Developer', 'Frontend Developer'];
   const containerRef = useRef(null);
@@ -114,13 +117,13 @@ const Info = () => {
                   Hello, I'm <span className="text-zinc-500 dark:text-zinc-400">Subash</span>
                 </h1>
                 
-                <div className="text-lg sm:text-xl lg:text-2xl font-mono text-zinc-600 dark:text-zinc-450 dark:text-zinc-400 mb-4 h-10 tracking-wider">
+                <div className="text-lg sm:text-xl lg:text-2xl font-mono text-zinc-600 dark:text-zinc-400 mb-4 h-10 tracking-wider">
                   A <span className="text-zinc-900 dark:text-white font-bold">{text}</span>
                   <span className="ml-1 animate-pulse">|</span>
                 </div>
                 
                 <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
-                  I am a Full Stack Intern at YS Innovation Startup in Coimbatore, specializing in building responsive and user-friendly websites using React, TypeScript, WordPress, WooCommerce, Shopify, and modern web frameworks. I focus on clean code, smart design, and continuous learning to deliver high-quality solutions.
+                  I am a Full Stack Intern at YS Innovation in Coimbatore, specializing in building responsive and user-friendly websites using React, TypeScript, WordPress, WooCommerce, Shopify, and modern web frameworks. I focus on clean code, smart design, and continuous learning to deliver high-quality solutions.
                   <br /><br />
                   Outside coding, I enjoy anime, gaming, and reading manga, which inspire my creativity.
                 </p>
@@ -132,31 +135,52 @@ const Info = () => {
                   href='mailto:mrsubash1615@gmail.com' 
                   rel='noopener noreferrer' 
                   target='_blank'
-                  className="inline-flex items-center justify-center gap-2 border border-zinc-300 dark:border-zinc-700 bg-zinc-200 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-200 px-6 py-3 rounded-none font-mono text-xs tracking-widest uppercase hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-950 transition-all duration-300"
+                  onMouseEnter={() => setHireHovered(true)}
+                  onMouseLeave={() => setHireHovered(false)}
+                  className="cyber-btn inline-flex items-center justify-center gap-2 border border-zinc-400 dark:border-zinc-600 bg-zinc-900 dark:bg-zinc-900 text-white dark:text-zinc-200 px-6 py-3 rounded-none font-mono text-xs uppercase hover:bg-zinc-800 dark:hover:bg-zinc-800/80"
                 >
+                  <span className="btn-corner btn-corner-tl"></span>
+                  <span className="btn-corner btn-corner-tr"></span>
+                  <span className="btn-corner btn-corner-bl"></span>
+                  <span className="btn-corner btn-corner-br"></span>
                   <BsSuitcaseLgFill className="text-sm" />
-                  Hire Me
+                  <span>
+                    <ScrambleText text="Hire Me" trigger={hireHovered} />
+                  </span>
                 </a>
                 
                 <button
                   onClick={downloadResume}
-                  className="inline-flex items-center justify-center gap-2 border border-zinc-250 dark:border-zinc-800 bg-transparent text-zinc-500 dark:text-zinc-400 px-6 py-3 rounded-none font-mono text-xs tracking-widest uppercase hover:bg-zinc-100 dark:hover:bg-zinc-905 dark:hover:bg-zinc-900 dark:hover:text-zinc-200 transition-all duration-300"
+                  onMouseEnter={() => setResumeHovered(true)}
+                  onMouseLeave={() => setResumeHovered(false)}
+                  className="cyber-btn inline-flex items-center justify-center gap-2 border border-zinc-300 dark:border-zinc-600 bg-transparent text-zinc-600 dark:text-zinc-300 px-6 py-3 rounded-none font-mono text-xs uppercase hover:bg-zinc-100/50 dark:hover:bg-zinc-900/50 hover:text-zinc-900 dark:hover:text-white"
                 >
+                  <span className="btn-corner btn-corner-tl"></span>
+                  <span className="btn-corner btn-corner-tr"></span>
+                  <span className="btn-corner btn-corner-bl"></span>
+                  <span className="btn-corner btn-corner-br"></span>
                   <FaDownload className="text-sm" />
-                  Download Resume
+                  <span>
+                    <ScrambleText text="Download Resume" trigger={resumeHovered} />
+                  </span>
                 </button>
               </div>
 
               {/* Social Links */}
-              <div className="flex justify-center lg:justify-start gap-5">
+              <div className="flex justify-center lg:justify-start gap-4">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`text-xl text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-all duration-300`}
+                    className="cyber-btn w-10 h-10 flex items-center justify-center border border-zinc-300 dark:border-zinc-700 text-zinc-650 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white bg-transparent rounded-none"
+                    aria-label={social.label || "Social Link"}
                   >
+                    <span className="btn-corner btn-corner-tl"></span>
+                    <span className="btn-corner btn-corner-tr"></span>
+                    <span className="btn-corner btn-corner-bl"></span>
+                    <span className="btn-corner btn-corner-br"></span>
                     {social.icon}
                   </a>
                 ))}
